@@ -15,6 +15,12 @@ const router = new Router({
       path: '/cv', component: () => import('../components/CV.vue')
     },
     {
+      path: '/skills', component: () => import('../components/Skills.vue')
+    },
+    {
+      path: '/offers', component: () => import('../components/Offers.vue')
+    },
+    {
       path: '/projects', component: () => import('../components/Projects.vue')
     },
   ]
