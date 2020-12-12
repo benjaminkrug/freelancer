@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import { publicPath } from '../../vue.config.js'
 
 //import Home from '../components/Home.vue'
 
