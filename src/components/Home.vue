@@ -26,9 +26,6 @@ export default {
     msg: String
   },
   computed: {
-    path() {
-      return publicPath
-    }
   }
 }
 </script>
