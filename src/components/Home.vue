@@ -4,6 +4,8 @@
       <Nav/>
     </div>
     <div class="body">
+    {{ path }}
+
       <router-view></router-view>
     </div>
     <div class="footer">
@@ -15,6 +17,8 @@
 <script>
 import Nav from './Nav/Nav.vue'
 import Footer from './footer/footer.vue'
+import { publicPath } from '../../vue.config.js'
+
 export default {
   name: 'Home',
   components: {
@@ -23,6 +27,11 @@ export default {
   },
   props: {
     msg: String
+  },
+  computed: {
+    path() {
+      return publicPath
+    }
   }
 }
 </script>
