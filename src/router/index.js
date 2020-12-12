@@ -7,7 +7,7 @@ Vue.use(Router);
 
 const router = new Router({
   mode: "history",
-  base: process.env.BASE_URL,
+  base: process.env.NODE_ENV,
   routes: [
     {
       path: '', component: () => import('../components/HomeBody.vue')
