@@ -19,7 +19,6 @@ const router = new Router({
     {
       path: '/projects', component: () => import('../components/Projects.vue')
     },
-    { path: '*', component:  () => import('../components/NotFoundComponent.vue') }
   ]
 });
 
