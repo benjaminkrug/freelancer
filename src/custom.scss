@@ -13,9 +13,13 @@ $grid-breakpoints: (
 $bv-enable-table-stacked: false;
 
 $theme-colors: (
-  "primary": #093013,
+  "primary": #202c3d,
+  "secondary": #202c3d,
   "danger": #ff4136
 );
+
+$primary: #3a4f41;
+$secondary: #202c3d;
 
 // Include Bootstrap and BootstrapVue SCSS files
 @import '~bootstrap/scss/bootstrap.scss';

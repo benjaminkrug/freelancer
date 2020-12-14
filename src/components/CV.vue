@@ -3,7 +3,7 @@
     <img src="../assets/Profilbild2020V2.png">
     <div class="cvcard">
       <div v-for="milestone in milestones"  :key="milestone.name" class="milestone">
-        <b-button v-b-toggle="'collapse-' + milestone.id" active="false">{{ milestone.name }}</b-button>
+        <b-button variant="primary" v-b-toggle="'collapse-' + milestone.id" active="false">{{ milestone.name }}</b-button>
         <b-collapse :id="'collapse-' + milestone.id" class="mt-2">
           <div v-for="station in milestone.stationen" :key="station" class="task">
             <b-card :title="station.title" :sub-title="station.subTitle">
@@ -97,5 +97,8 @@ export default {
 }
 .task{
   margin: 5px 5px;
+}
+.btn-primary:hover{
+  background-color: #1d1e1f !important;
 }
 </style>
