@@ -85,6 +85,7 @@ export default {
 .cv{
   padding-left: 30%;
   padding-right: 30%;
+  padding-top: 1%;
 }
 .milestone{
   margin: 5px 5px;

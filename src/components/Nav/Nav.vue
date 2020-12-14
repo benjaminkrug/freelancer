@@ -1,6 +1,6 @@
 <template>
   <b-navbar class="nav" type="dark" variant="dark">
-    <b-navbar-nav class="linkNav" v-bind:class="animation ? 'animated slideInLeft slow' : ''">
+    <b-navbar-nav class="linkNav" v-bind:class="animation ? 'animated slideInLeft' : ''">
       <img src="https://placekitten.com/g/30/30" alt="Kitten" id="animated-img1">
       <b-nav-item href="/">Home</b-nav-item>
       <b-nav-item href="/CV">Lebenslauf</b-nav-item>
@@ -8,7 +8,7 @@
       <b-nav-item href="/Offers">Offers</b-nav-item>
 
     </b-navbar-nav>
-    <b-navbar-nav class="userNav animated slideInRight slow" align="right">
+    <b-navbar-nav class="userNav animated slideInRight" align="right">
       <b-nav-item href="#">Account</b-nav-item>
       <b-nav-item href="#">Settings</b-nav-item>
     </b-navbar-nav>

@@ -41,7 +41,7 @@ export default {
 .body{
   height: 83%;
   background: radial-gradient(#343a40, #2e4035);
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 .footer{
