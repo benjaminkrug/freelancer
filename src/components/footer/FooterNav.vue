@@ -1,22 +1,18 @@
 <template>
-  <div class="nav">
-    <b-navbar class="linkNav" type="dark" variant="dark">
-      <b-navbar-nav>
-        <b-nav-item href="#">Help</b-nav-item>
-      </b-navbar-nav>
-    </b-navbar>
-    <b-navbar class="userNav" type="dark" variant="dark">
-      <b-navbar-nav>
-        <b-nav-item href="#">Impressum</b-nav-item>
-        <b-nav-item href="#">Tipps</b-nav-item>
-      </b-navbar-nav>
-    </b-navbar>
-  </div>
+  <b-navbar class="nav" type="dark" variant="dark">
+    <b-navbar-nav class="linkNav">
+      <b-nav-item href="#">Help</b-nav-item>
+    </b-navbar-nav>
+    <b-navbar-nav class="userNav" align="right">
+      <b-nav-item href="#">Impressum</b-nav-item>
+      <b-nav-item href="#">Tipps</b-nav-item>
+    </b-navbar-nav>
+  </b-navbar>
 </template>
 
 <script>
 export default {
-  name: 'Nav',
+  name: 'footerNav',
   props: {
   }
 }
@@ -24,6 +20,7 @@ export default {
 
 <style scoped>
 .nav{
+  height: 100%;
   display: flex;
   flex-flow: row;
 }

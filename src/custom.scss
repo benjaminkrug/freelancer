@@ -12,15 +12,21 @@ $grid-breakpoints: (
 );
 $bv-enable-table-stacked: false;
 
+
+//$primary: #14593c;
+//$secondary: #07eb5e;
+
+
 $theme-colors: (
-  "primary": #202c3d,
-  "secondary": #202c3d,
-  "danger": #ff4136
+  "primary ":#14593c,
+  "secondary ":#1d2a36,
+  "success ":rgb(75, 191, 115),
+  "danger ":rgb(153, 0, 0),
+  "warning ":rgb(240, 173, 78),
+  "info ":rgb(31, 155, 207)
 );
 
-$primary: #3a4f41;
-$secondary: #202c3d;
-
+$primary: #14593c;
 // Include Bootstrap and BootstrapVue SCSS files
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~bootstrap-vue/src/index.scss';

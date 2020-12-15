@@ -6,7 +6,7 @@
     <div class="body">
       <router-view></router-view>
     </div>
-    <div class="footer">
+    <div class="foot">
       <Footer/>
     </div>
   </div>
@@ -14,7 +14,7 @@
 
 <script>
 import Nav from './Nav/Nav.vue'
-import Footer from './footer/footer.vue'
+import Footer from './footer/Footer.vue'
 
 export default {
   name: 'Home',
@@ -40,11 +40,10 @@ export default {
 }
 .body{
   height: 83%;
-  background: radial-gradient(#343a40, #2e4035);
   overflow-y: auto;
   overflow-x: hidden;
 }
-.footer{
+.foot{
   height: 7%;
   background-color: #343a40;
   overflow: hidden;

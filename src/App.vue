@@ -18,6 +18,9 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  background: radial-gradient(#1d2a36, #2e4035);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

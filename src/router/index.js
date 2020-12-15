@@ -15,10 +15,10 @@ const router = new Router({
       path: '/cv', component: () => import('../components/CV.vue')
     },
     {
-      path: '/skills', component: () => import('../components/Skills.vue')
+      path: '/skills', component: () => import('../components/skills/Skills.vue')
     },
     {
-      path: '/offers', component: () => import('../components/Offers.vue')
+      path: '/offers', component: () => import('../components/offers/Offers.vue')
     },
     {
       path: '/projects', component: () => import('../components/Projects.vue')

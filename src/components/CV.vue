@@ -3,9 +3,9 @@
     <img src="../assets/Profilbild2020V2.png">
     <div class="cvcard">
       <div v-for="milestone in milestones"  :key="milestone.name" class="milestone">
-        <b-button variant="primary" v-b-toggle="'collapse-' + milestone.id" active="false">{{ milestone.name }}</b-button>
+        <b-button variant="primary" v-b-toggle="'collapse-' + milestone.id" >{{ milestone.name }}</b-button>
         <b-collapse :id="'collapse-' + milestone.id" class="mt-2">
-          <div v-for="station in milestone.stationen" :key="station" class="task">
+          <div v-for="station in milestone.stationen" :key="`${milestone.id} + ${station.id}`" class="task">
             <b-card :title="station.title" :sub-title="station.subTitle">
               <b-list-group>
               <div v-for="task in station.tasks"  :key="task">
@@ -32,6 +32,7 @@ export default {
           id: 1,
           name: 'ARBEITSPLÄTZE',
           stationen:[{
+            id: 1,
             title: 'iXmap Services GmbH & Co. KG',
             subTitle: 'Softwareentwickler',
             tasks:[
@@ -46,6 +47,7 @@ export default {
             id: 2,
             name: 'WERKSTUDENTENTÄTIGKEIT/PRAKTIKUM ',
             stationen:[{
+              id: 1,
               title: 'Bachelorarbeit',
               subTitle: 'Erstellung einer Software zur Analyse des biometrischen Tippverhalten unter natürlichen und stressigen Situationen',
               tasks:[
@@ -56,6 +58,7 @@ export default {
               ]
             },
             {
+              id: 2,
               title: 'Werkstudent in Abteilung P S&A Q RBG3',
               subTitle: 'Continental AG in Regensburg',
               tasks:[
@@ -65,6 +68,7 @@ export default {
               ]
             },
             {
+              id: 3,
               title: 'Pflichtpraktikum in Abteilung P S&A Q EES EG',
               subTitle: 'Continental AG in Regensburg',
               tasks:[
@@ -98,8 +102,5 @@ export default {
 }
 .task{
   margin: 5px 5px;
-}
-.btn-primary:hover{
-  background-color: #1d1e1f !important;
 }
 </style>

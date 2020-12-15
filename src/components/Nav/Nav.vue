@@ -6,6 +6,7 @@
       <b-nav-item href="/CV">Lebenslauf</b-nav-item>
       <b-nav-item href="/Skills">Skills</b-nav-item>
       <b-nav-item href="/Offers">Offers</b-nav-item>
+      <b-nav-item href="/Projects">Projects</b-nav-item>
 
     </b-navbar-nav>
     <b-navbar-nav class="userNav animated slideInRight" align="right">
