@@ -8,7 +8,7 @@
           </div>
           <div class="iconblock">
             <SkillIcon hovertext='VUE'>
-              <i class="fab fa-vuejs fa-9x" />
+              <i class="fab fa-vuejs fa-7x" />
             </SkillIcon>
             <SkillIcon hovertext='.NET'>
               <img class="image" src="@/assets/Skills/asp_net.png" id="asp_net" width="126" height="144">
@@ -25,10 +25,10 @@
           </div>
           <div class="secondImages iconblock">
             <SkillIcon hovertext='HTML'>
-              <i class="fab fa-html5 fa-9x"></i>
+              <i class="fab fa-html5 fa-7x"></i>
             </SkillIcon>
             <SkillIcon hovertext='JAVASCRIPT'>
-              <i class="fab fa-js fa-9x"></i>
+              <i class="fab fa-js fa-7x"></i>
             </SkillIcon>
             <SkillIcon hovertext='CSS'>
               <img class="image" src="@/assets/Skills/css.png" id="css" width="126" height="144">
@@ -80,7 +80,7 @@ export default {
 .grid{
   display: grid;
   grid-template-columns: 40% auto 40%;
-  grid-template-rows: 5% 250px 250px 250px;
+  grid-template-rows: 2% 250px 250px 250px;
 }
 .first{
   grid-column-start: 2;
