@@ -98,19 +98,19 @@ export default {
   grid-row-start: 4;
 }
 svg { //vor all i elements
-  padding: 5px;
+  padding: 10px 10px;
 }
 svg:hover { //vor all i elements
   padding: 15px;
 }
 .image{
-  padding: 10px 10px;
+  padding: 20px 20px;
 }
 img {
   filter: grayscale(100%);
 }
 img:hover { //vor all i elements
-  padding: 15px;
+  padding: 25px;
 }
 .innerGrid{
   display: grid;
@@ -119,7 +119,8 @@ img:hover { //vor all i elements
 .secondImages{
 }
 .iconblock{
-    display: flex;
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
   //background-color: AliceBlue;
 }
 </style>
