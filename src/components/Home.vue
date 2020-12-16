@@ -14,7 +14,7 @@
 
 <script>
 import Nav from './Nav/Nav.vue'
-import Footer from './footer/Footer.vue'
+import Footer from './footerComponents/Footer.vue'
 
 export default {
   name: 'Home',
