@@ -37,6 +37,7 @@ export default {
 }
 .header{
   height: 10%;
+  overflow-x: hidden;
 }
 .body{
   height: 83%;
