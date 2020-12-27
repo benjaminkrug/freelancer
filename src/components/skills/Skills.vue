@@ -79,7 +79,7 @@ export default {
 <style lang="scss" scoped>
 .grid{
   display: grid;
-  grid-template-columns: 40% auto 40%;
+  grid-template-columns: 40% 20% 40%;
   grid-template-rows: 2% 250px 250px 250px;
 }
 .first{
