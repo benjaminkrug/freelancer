@@ -1,6 +1,6 @@
 <template>
   <div class="HomeBody" id="homeBody" @wheel="handleScroll">
-    <div v-for="box in boxes" :key="box.id" class="circlebox" :id="box.id">
+    <div v-for="box in boxes" :key="box.id" class="circlebox" v-bind:style="box.style" :id="box.id">
     </div>
   </div>
 </template>
@@ -15,11 +15,12 @@ export default {
     return {
       boxes:[{
         style: {
-          'background-color': 'red'
+          backgroundImage:'url("https://placekitten.com/100/100")'
         },
-        id: 'circlebox1'
+        id: 'circlebox1',
+        position: 0,
       }],
-      position: 0,
+      globalPosition: 0,
       rows: 128,
       columns: 32,
     }
@@ -34,40 +35,47 @@ export default {
 
   },
   methods: {
-    async handleScroll (value) {
+    handleScroll (value) {
       var next = value.deltaY > 0 ? -1 : +1;
-      this.position += next;
+      this.globalPosition += next;
 
-      if(this.position < 0 ){
-        this.position = 0
-      }
-      if(this.position > this.rows ){
-        this.position = this.rows
-      }
-      var clientHeight = this.HomeBodyElement.clientHeight - this.CircleboxElement.clientHeight;
-      var boxBottom = (-1) * this.position * clientHeight / this.rows;
-      var clientWidth = this.HomeBodyElement.clientWidth - this.CircleboxElement.clientWidth;
+      this.boxes.forEach(box => {
+        box.position += next;
 
-      var rest = parseInt(this.position % (this.columns * 2)); //gibt 4 elemente links->mitte->rechts->mitte
-      var referenzAbweichung = Math.abs(rest - this.columns); //rechts sind alle die die 2 als rest haben ( +- 1 sind die mitte/ +-2 sind links)
-      var offsetIndex = Math.abs(referenzAbweichung- this.columns); // hier wird alles umgedreht links ist jetzt 0 abs(2-2) mitte ist 1 abs(1-2) rechts ist abs(0-2)
-      var boxLeft = offsetIndex * clientWidth / this.columns;
-      this.CircleboxElement.style.transform = 'translateY('+ boxBottom +'px)';
-      this.CircleboxElement.style.transform += 'translateX('+ boxLeft +'px)';
+        if(box.position < 0 ){
+          box.position = 0
+        }
+        if(box.position > this.rows ){
+          box.position = this.rows
+        }
+        var boxElement = document.getElementById(box.id);
+        var clientHeight = this.HomeBodyElement.clientHeight - boxElement.clientHeight;
+        var boxBottom = (-1) * box.position * clientHeight / this.rows;
+        var clientWidth = this.HomeBodyElement.clientWidth - boxElement.clientWidth;
+
+        var rest = parseInt(box.position % (this.columns * 2)); //gibt 4 elemente links->mitte->rechts->mitte
+        var referenzAbweichung = Math.abs(rest - this.columns); //rechts sind alle die die 2 als rest haben ( +- 1 sind die mitte/ +-2 sind links)
+        var offsetIndex = Math.abs(referenzAbweichung- this.columns); // hier wird alles umgedreht links ist jetzt 0 abs(2-2) mitte ist 1 abs(1-2) rechts ist abs(0-2)
+        var boxLeft = offsetIndex * clientWidth / this.columns;
+        boxElement.style.transform = 'translateY('+ boxBottom +'px)';
+        boxElement.style.transform += 'translateX('+ boxLeft +'px)';
+      });
 
     }
   },
   watch: {
-    position (newVal) { // watch it
+    globalPosition (newVal) { // watch it
       console.log('Prop changed: ', newVal)
 
-      if(newVal / this.columns > this.boxes.length-1)
+      if(newVal / this.columns * 1.65 > this.boxes.length)
       {
+        var id = this.boxes.length + 1
         this.boxes.push({
           style: {
-            'background-color': 'blue'
+            backgroundImage:`url("https://placekitten.com/100/10${id}")`
           },
-          id: 'circlebox' + this.boxes.length + 1
+          position: 0,
+          id: 'circlebox' + id
         })
       }
     }
@@ -90,7 +98,6 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: red;
   height: 100px;
   width: 100px;
 }
