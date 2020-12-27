@@ -17,7 +17,8 @@ export default {
         style: {
           backgroundImage:'url("https://placekitten.com/100/100")'
         },
-        id: 'circlebox1',
+        id: 'circlebox0',
+        key: 0,
         position: 0,
       }],
       globalPosition: 0,
@@ -30,7 +31,7 @@ export default {
       return document.getElementById('homeBody');
     },
     CircleboxElement() {
-      return document.getElementById('circlebox1');
+      return document.getElementById('circlebox0');
     },
 
   },
@@ -39,15 +40,17 @@ export default {
       var next = value.deltaY > 0 ? -1 : +1;
       this.globalPosition += next;
 
+
+      if(this.boxes[this.boxes.length - 1].position < 0 ){
+        this.boxes.pop()
+      }
+      if(this.boxes[0].position > this.rows  ){
+        this.boxes.shift()
+      }
+
       this.boxes.forEach(box => {
         box.position += next;
 
-        if(box.position < 0 ){
-          box.position = 0
-        }
-        if(box.position > this.rows ){
-          box.position = this.rows
-        }
         var boxElement = document.getElementById(box.id);
         var clientHeight = this.HomeBodyElement.clientHeight - boxElement.clientHeight;
         var boxBottom = (-1) * box.position * clientHeight / this.rows;
@@ -69,12 +72,13 @@ export default {
 
       if(newVal / this.columns * 1.65 > this.boxes.length)
       {
-        var id = this.boxes.length + 1
+        var id = this.boxes[this.boxes.length - 1].key + 1
         this.boxes.push({
           style: {
             backgroundImage:`url("https://placekitten.com/100/10${id}")`
           },
           position: 0,
+          key: id,
           id: 'circlebox' + id
         })
       }
