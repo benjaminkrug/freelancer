@@ -9,7 +9,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '', component: () => import('../components/HomeBody.vue')
+      path: '', component: () => import('../components/Home/HomeBody.vue')
     },
     {
       path: '/cv', component: () => import('../components/CV.vue')
