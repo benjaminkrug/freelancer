@@ -54,20 +54,23 @@ export default {
       var next = value.deltaY > 0 ? -1 : +1;
       this.position += next;
 
+      var rows = 128; // muss
+      var columns = 32;
+
       if(this.position < 0 ){
         this.position = 0
       }
-      if(this.position > 8 ){
-        this.position = 8
+      if(this.position > rows ){
+        this.position = rows
       }
       var clientHeight = this.HomeBodyElement.clientHeight - this.CircleboxElement.clientHeight;
-      var boxBottom = (-1) * this.position * clientHeight / 8;
+      var boxBottom = (-1) * this.position * clientHeight / rows;
       var clientWidth = this.HomeBodyElement.clientWidth - this.CircleboxElement.clientWidth;
 
-      var rest = parseInt(this.position % 4); //gibt 5 elemente links->mitte->rechts->mitte->links
-      var referenzAbweichung = Math.abs(rest - 2); //rechts sind alle die die 2 als rest haben ( +- 1 sind die mitte/ +-2 sind links)
-      var offsetIndex = Math.abs(referenzAbweichung-2); // hier wird alles umgedreht links ist jetzt 0 abs(2-2) mitte ist 1 abs(1-2) rechts ist abs(0-2)
-      var boxLeft = offsetIndex * clientWidth / 2;
+      var rest = parseInt(this.position % (columns * 2)); //gibt 4 elemente links->mitte->rechts->mitte
+      var referenzAbweichung = Math.abs(rest - columns); //rechts sind alle die die 2 als rest haben ( +- 1 sind die mitte/ +-2 sind links)
+      var offsetIndex = Math.abs(referenzAbweichung- columns); // hier wird alles umgedreht links ist jetzt 0 abs(2-2) mitte ist 1 abs(1-2) rechts ist abs(0-2)
+      var boxLeft = offsetIndex * clientWidth / columns;
       console.log(offsetIndex);
       this.CircleboxElement.style.transform = 'translateY('+ boxBottom +'px)';
       this.CircleboxElement.style.transform += 'translateX('+ boxLeft +'px)';
