@@ -5,4 +5,7 @@ var data: [{
 },
 {
   transform: translateY(-100px) translateX(600.px);
+},
+{
+  transform: translateY(-100px) translateX(600.px);
 }]
