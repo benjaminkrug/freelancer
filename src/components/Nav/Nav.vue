@@ -1,7 +1,7 @@
 <template>
   <b-navbar class="nav" type="dark" variant="dark">
     <b-navbar-nav class="linkNav" v-bind:class="animation ? 'animated slideInLeft' : ''">
-      <img src="https://placekitten.com/g/30/30" alt="Kitten" id="animated-img1">
+      <img src="../../assets/BKICON.png" alt="Kitten" id="animated-img1" height="40">
       <b-nav-item href="/">Home</b-nav-item>
       <b-nav-item href="/CV">Lebenslauf</b-nav-item>
       <b-nav-item href="/Skills">Skills</b-nav-item>

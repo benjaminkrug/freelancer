@@ -1,7 +1,7 @@
 <template>
   <div v-if="src" class="FlipImage">
     <div v-if="!selected" class="FlipImage">
-      <h2>{{ info }}</h2>
+      <h1>{{ info.header }}</h1>
       <img class="image" :src="src" alt="pic">
     </div>
     <div v-else class="flip-box-inner">
@@ -9,10 +9,12 @@
         <img class="image" :src="src" alt="pic">
       </div>
       <div class="flip-box-back">
-        <h2>{{ info }}</h2>
         <div class="link" v-on:click="testFunction">
-          Go To
+          <h2>{{ info.header }}</h2>
         </div>
+        <h6>
+           {{ info.body}}
+        </h6>
       </div>
     </div>
   </div>
@@ -35,8 +37,8 @@ export default {
       default: false
     },
     info: {
-      type: String,
-      default: ''
+      type: Object,
+      default: null
     },
     link: {
       type: String,
@@ -67,6 +69,7 @@ export default {
   width: 100%;
   height: 100%;
   text-align: center;
+  font-size: 10px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
@@ -98,5 +101,8 @@ export default {
 
 .link:hover{
   text-decoration: underline;
+}
+h1{
+  font-weight: 700;
 }
 </style>

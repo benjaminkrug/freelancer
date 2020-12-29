@@ -8,6 +8,8 @@
 
 <script>
 import FlipImage from './FlipImage'
+import CircleData from './CircleData'
+
 export default {
   name: 'HomeBody',
   components: {
@@ -21,8 +23,11 @@ export default {
         style: {
         },
         selected: false,
-        info: 'first',
-        src: require(`@/assets/Home/Vue.png`),
+        info: {
+          header: 'CV',
+          body: 'Hier können sie mehr über meinen bisherigen Lebensgang erfahren.'
+        },
+        src: require(`@/assets/Profilbild2020V2.png`),
         link: '/CV',
         id: 'circlebox0',
         key: 0,
@@ -30,8 +35,8 @@ export default {
       }],
       selectedDifference: 7,
       globalPosition: 0,
-      rows: 128,
-      columns: 32,
+      rows: 64,
+      columns: 16,
     }
   },
   computed: {
@@ -41,22 +46,33 @@ export default {
     CircleboxElement() {
       return document.getElementById('circlebox0');
     },
-
+    Data () {
+      return CircleData;
+    }
   },
   methods: {
     handleScroll (value) {
+
       var next = value.deltaY > 0 ? -1 : +1;
       this.globalPosition += next;
 
+      if(this.globalPosition < 1){
+        this.globalPosition = 0;
+        return;
+      }
 
       if(this.boxes[this.boxes.length - 1].position < 0 ){
         this.boxes.pop()
       }
 
       this.boxes.forEach(box => {
+        if(box.position > this.rows- 1) {
+          box.style.opacity = 0.3;
+        }
         if(box.position > this.rows) {
           box.style.opacity = 0;
         }
+
         box.position += next;
         box.selected = box.position > (this.columns * 1.5 - this.selectedDifference) && box.position < (this.columns * 1.5 + this.selectedDifference);
 
@@ -94,7 +110,6 @@ export default {
           boxElement.style.transform += 'scale(2)';
         }
 
-        console.log(w);
       });
 
     }
@@ -103,18 +118,26 @@ export default {
     globalPosition (newVal) { // watch it
       if(newVal / this.columns * 1.25 > this.boxes.length)
       {
-        var id = this.boxes[this.boxes.length - 1].key + 1
-        this.boxes.push({
+        var id = this.boxes[this.boxes.length - 1].key
+        var box = this.Data[id];
+        if(box){
+          box.position = 0;
+          this.boxes.push(box)
+        }
+          /*{
           style: {
             //backgroundImage:`url("https://placekitten.com/100/10${id}")`
           },
           selected: false,
-          info: 'boxid: ' + id,
+          info: {
+            header: 'boxid: ' + id,
+            body: 'body info'
+          },
           src: require(`@/assets/Home/Vue.png`),
           position: 0,
           key: id,
           id: 'circlebox' + id
-        })
+        })*/
       }
     }
   },
