@@ -1,15 +1,18 @@
 <template>
   <div class="HomeBody" id="homeBody" @wheel="handleScroll">
     <div v-for="box in boxes" :key="box.id" v-bind:class="box.position > (columns * 1.5 - selectedDifference) && box.position < (columns * 1.5 + selectedDifference) ? 'circlebox selected' : 'circlebox'" v-bind:style="box.style" :id="box.id">
-      <img v-if="box.src" class="image" :src="box.src" alt="pic">
+      <FlipImage :src="box.src" :selected="box.selected" :info="box.info" :link="box.link"/>
     </div>
   </div>
 </template>
 
 <script>
-
+import FlipImage from './FlipImage'
 export default {
   name: 'HomeBody',
+  components: {
+    FlipImage
+  },
   props: {
   },
   data () {
@@ -18,12 +21,14 @@ export default {
         style: {
         },
         selected: false,
+        info: 'first',
         src: require(`@/assets/Home/Vue.png`),
+        link: '/CV',
         id: 'circlebox0',
         key: 0,
         position: 0,
       }],
-      selectedDifference: 3,
+      selectedDifference: 7,
       globalPosition: 0,
       rows: 128,
       columns: 32,
@@ -73,7 +78,7 @@ export default {
         var direction = rest > this.columns ? 1 : -1;
         // Math.abs(referenzAbweichung - (this.columns / 2)) => 0 ist mitte (steigung klein) this.columns / 2 is außen (steigung groß)
         var steigung = (Math.abs(referenzAbweichung - (this.columns / 2))) / (this.columns / 2);
-        var rotation = 20 * direction * steigung;
+        var rotation = 10 * direction * steigung;
         if(!box.selected) {
           boxElement.style.transform += 'rotate('+ rotation + 'deg)';
         }
@@ -85,6 +90,10 @@ export default {
         {
           boxElement.style.transform += 'scalex(-1)';
         }
+        if(box.selected){
+          boxElement.style.transform += 'scale(2)';
+        }
+
         console.log(w);
       });
 
@@ -92,7 +101,7 @@ export default {
   },
   watch: {
     globalPosition (newVal) { // watch it
-      if(newVal / this.columns * 1.15 > this.boxes.length)
+      if(newVal / this.columns * 1.25 > this.boxes.length)
       {
         var id = this.boxes[this.boxes.length - 1].key + 1
         this.boxes.push({
@@ -100,6 +109,7 @@ export default {
             //backgroundImage:`url("https://placekitten.com/100/10${id}")`
           },
           selected: false,
+          info: 'boxid: ' + id,
           src: require(`@/assets/Home/Vue.png`),
           position: 0,
           key: id,
@@ -125,23 +135,15 @@ export default {
 .circlebox{
   opacity: 0.4;
   transition: transform 1.1s;
-  transform: translateY(300px) rotate(-60deg);
+  transform: translateY(100px) rotate(-40deg);
   position: absolute;
-  bottom: -100px;
+  bottom: 0px;
   left: 0;
   height: 200px;
   width: 200px;
 }
 .selected{
-  width: 300px;
   opacity: 1;
   z-index: 1;
-}
-.image:hover{
-  transition: transform .5s;
-  transform: scalex(-1);
-}
-.image{
-  width: inherit;
 }
 </style>
