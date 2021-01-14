@@ -3,6 +3,15 @@
     <div v-for="box in boxes" :key="box.id" v-bind:class="box.position > (columns * 1.5 - selectedDifference) && box.position < (columns * 1.5 + selectedDifference) ? 'circlebox selected' : 'circlebox'" v-bind:style="box.style" :id="box.id">
       <FlipImage :src="box.src" :selected="box.selected" :info="box.info" :link="box.link"/>
     </div>
+    <div
+      class="scrollDown"
+      @mouseover="scrollup"
+      @mouseleave="hover = false"
+    >
+    <div v-if="hover">
+      <i class="fas fa-angle-double-up"></i>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -19,6 +28,7 @@ export default {
   },
   data () {
     return {
+      hover: false,
       boxes:[{
         style: {
         },
@@ -51,9 +61,18 @@ export default {
     }
   },
   methods: {
+    scrollup () {
+      this.hover = true
+      this.handleScroll({deltaY: 1})
+      while (this.hover) {
+        setTimeout(() => {
+            this.handleScroll({deltaY: 1})
+        }, 1100);
+      }
+    },
     handleScroll (value) {
 
-      var next = value.deltaY > 0 ? -1 : +1;
+      var next = value.deltaY > 0 ? 1 : -1;
       this.globalPosition += next;
 
       if(this.globalPosition < 1){
@@ -124,20 +143,6 @@ export default {
           box.position = 0;
           this.boxes.push(box)
         }
-          /*{
-          style: {
-            //backgroundImage:`url("https://placekitten.com/100/10${id}")`
-          },
-          selected: false,
-          info: {
-            header: 'boxid: ' + id,
-            body: 'body info'
-          },
-          src: require(`@/assets/Home/Vue.png`),
-          position: 0,
-          key: id,
-          id: 'circlebox' + id
-        })*/
       }
     }
   },
@@ -147,7 +152,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped scss>
 .HomeBody{
   height: 100%;
   width: 60%;
@@ -168,5 +173,20 @@ export default {
 .selected{
   opacity: 1;
   z-index: 1;
+}
+.scrollDown{
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  bottom: 0px;
+  left: 0;
+}
+.scrollDown:hover{
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  bottom: 0px;
+  left: 0;
+  background-color: rgba(52, 58, 64,0.3);
 }
 </style>
